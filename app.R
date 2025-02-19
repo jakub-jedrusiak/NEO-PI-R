@@ -8,7 +8,7 @@ library(glue)
 library(dplyr)
 
 generate_plot <- function(data) {
-  img_grob <- readRDS("arkusz_wynikow_grob.RDS")
+  img_grob <- readRDS("score_sheet_grob.RDS")
   labels_raw <- c("N", "E", "O", "U", "S")
   labels <- c(labels_raw, paste0(rep(labels_raw, each = 6), rep(1:6, 5)))
 
@@ -86,6 +86,28 @@ ui <- fluidPage(
     tags$meta(property = "og:image", content = "https://shiny.jakubjedrusiak.pl/neo-pi-r/wykres.png")
   ),
   titlePanel("Generator profili osobowości NEO-PI-R"),
+  HTML('<p>
+  <a
+    href="https://github.com/jakub-jedrusiak/NEO-PI-R"
+    title="Go to GitHub repo"
+    ><img
+      src="https://img.shields.io/static/v1?label=jakub-jedrusiak&amp;message=NEO-PI-R&amp;color=blue&amp;logo=github"
+      alt="jakub-jedrusiak - NEO-PI-R"
+  /></a>
+  <a href="https://creativecommons.org/publicdomain/zero/1.0/"
+    ><img src="https://img.shields.io/badge/License-CC0-blue" alt="License"
+  /></a>
+  <a href="https://github.com/jakub-jedrusiak/NEO-PI-R"
+    ><img
+      src="https://img.shields.io/github/stars/jakub-jedrusiak/NEO-PI-R?style=social"
+      alt="stars - NEO-PI-R"
+  /></a>
+  <a href="https://github.com/jakub-jedrusiak/NEO-PI-R"
+    ><img
+      src="https://img.shields.io/github/forks/jakub-jedrusiak/NEO-PI-R?style=social"
+      alt="forks - NEO-PI-R"
+  /></a>
+</p>'),
 
   # Center the input section in a fixed-width container.
   div(
@@ -254,20 +276,20 @@ server <- function(input, output, session) {
 
   output$downloadPNGEmpty <- downloadHandler(
     filename = function() {
-      "arkusz_wynikow.png"
+      "score_sheet.png"
     },
     content = function(file) {
-      file.copy("www/arkusz_wynikow.png", file)
+      file.copy("www/score_sheet.png", file)
     },
     contentType = "image/png"
   )
 
   output$downloadPDFEmpty <- downloadHandler(
     filename = function() {
-      "arkusz_wynikow.pdf"
+      "score_sheet.pdf"
     },
     content = function(file) {
-      file.copy("www/arkusz_wynikow.pdf", file)
+      file.copy("www/score_sheet.pdf", file)
     },
     contentType = "application/pdf"
   )
