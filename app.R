@@ -83,7 +83,8 @@ ui <- fluidPage(
     tags$meta(property = "og:title", content = "Profile osobowości z testu NEO-PI-R"),
     tags$meta(property = "og:description", content = "Generator profili osobowości NEO-PI-R z wyników stenowych."),
     tags$meta(property = "og:url", content = "https://shiny.jakubjedrusiak.pl/neo-pi-r/"),
-    tags$meta(property = "og:image", content = "https://shiny.jakubjedrusiak.pl/neo-pi-r/wykres.png")
+    tags$meta(property = "og:image", content = "https://shiny.jakubjedrusiak.pl/neo-pi-r/wykres.png"),
+    tags$style(HTML("body {min-width: 600px;}"))
   ),
   titlePanel("Generator profili osobowości NEO-PI-R"),
   HTML('<p>
@@ -190,14 +191,14 @@ server <- function(input, output, session) {
       # Before any plot is generated, show the default image from the www folder.
       tags$img(
         src = "wykres.png",
-        style = "max-width: 100%; height: auto; max-height: 600px;",
+        style = "max-width: 90%; height: auto; max-height: 600px;",
         alt = "Wykres domyślny"
       )
     } else {
       # Once a plot is generated, display the generated plot.
       tags$img(
         src = base64enc::dataURI(file = plotFile(), mime = "image/png"),
-        style = "max-width: 100%; height: auto; max-height: 600px;",
+        style = "max-width: 90%; height: auto; max-height: 600px;",
         alt = "Wygenerowany wykres"
       )
     }
